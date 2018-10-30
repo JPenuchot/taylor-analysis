@@ -1,21 +1,8 @@
 #pragma once
 
-#include <utility>
 #include <tuple>
 
-template<typename F, std::size_t... I>
-void static_unroll_impl(std::integer_sequence<std::size_t, I...>, F&& fun)
-{
-  ( fun(std::integral_constant<std::size_t, I>{}) , ... );
-}
-
-template<std::size_t I, typename F>
-void static_unroll(F&& fun)
-{
-  static_unroll_impl( std::make_integer_sequence<std::size_t, I>{}
-                    , std::forward<F>(fun)
-                    );
-};
+#include "support.hpp"
 
 /**
  * @brief      Transforms a state tuple using a set of transformations.
