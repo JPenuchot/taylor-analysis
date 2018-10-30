@@ -60,6 +60,6 @@ template<typename T>
 std::ostream& operator << (std::ostream& os, const interval<T>& i)
 {
   const auto& [l, r] = as_ref_tuple(i);
-  os << '(' << l << "; " << r << ')';
+  os << '(' << l << ", " << r << ')';
   return os;
 }
