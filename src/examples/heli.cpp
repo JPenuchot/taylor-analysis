@@ -106,5 +106,8 @@ void heli()
 
   auto new_state = transform_state(trans, init_state);
 
+  for(unsigned i = 0; i < 100; i++)
+    new_state = transform_state(trans, new_state);
+
   cout << get<0>(new_state);
 }
