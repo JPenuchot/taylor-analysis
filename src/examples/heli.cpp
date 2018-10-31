@@ -15,19 +15,8 @@ void heli()
   constexpr double dt = 0.02;
   constexpr double time = 30.;
 
-  //  Tuple indexes for better readability
-  constexpr size_t  x1  = 0  , x2  = 1  , x3  = 2  , x4  = 3
-                  , x5  = 4  , x6  = 5  , x7  = 6  , x8  = 7
-                  , x9  = 8  , x10 = 9  , x11 = 10 , x12 = 11
-                  , x13 = 12 , x14 = 13 , x15 = 14 , x16 = 15
-                  , x17 = 16 , x18 = 17 , x19 = 18 , x20 = 19
-                  , x21 = 20 , x22 = 21 , x23 = 22 , x24 = 23
-                  , x25 = 24 , x26 = 25 , x27 = 26 , x28 = 27
-                  , t   = 28
-                  ;
-
   //  Initial state
-  auto init_state = make_tuple
+  auto state = make_tuple
     ( make_interval(0. , 0.1) /* x1  */ , make_interval(0. , 0.1) /* x2  */
     , make_interval(0. , 0.1) /* x3  */ , make_interval(0. , 0.1) /* x4  */
     , make_interval(0. , 0.1) /* x5  */ , make_interval(0. , 0.1) /* x6  */
@@ -45,7 +34,6 @@ void heli()
     , make_interval(0. , 0. ) /* t   */
     );
 
-  //  Polymorphic lambda : fully type agnostic
   auto trans = [&](const auto& states)
   {
     //  Structured binding
@@ -88,10 +76,8 @@ void heli()
     );
   };
 
-  auto new_state = trans(init_state);
-
   for(double t = 0.; t < time; t += dt)
-    new_state = trans(new_state);
+    state = trans(state);
 
-  cout << get<0>(new_state);
+  cout << get<0>(state);
 }
