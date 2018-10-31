@@ -4,6 +4,9 @@
 
 #include "support.hpp"
 
+template<typename Ret, typename... Args>
+using fun_t = Ret(Args...);
+
 /**
  * @brief      Transforms a state tuple using a set of transformations.
  *
@@ -15,16 +18,20 @@
  *
  * @return     New state
  */
-template<typename Trans, typename... Ts>
-auto transform(Trans trans, std::tuple<Ts...> tp)
+template<typename... Ts, typename... Fs>
+std::tuple<Ts...> transform_state
+  ( std::tuple<Fs...> trans
+  , const std::tuple<Ts...>& tp
+  )
 {
+  static_assert(sizeof...(Fs) == sizeof...(Ts), "Nooooo");
   using namespace std;
 
   tuple<Ts...> res;
 
   static_unroll<sizeof...(Ts)>([&](auto I)
   {
-    get<I>(res) = apply(get<I>(trans), tp);
+    get<I>(res) = get<I>(trans)(tp);
   });
 
   return res;
