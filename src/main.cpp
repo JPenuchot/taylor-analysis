@@ -28,5 +28,11 @@ int main()
 
   auto t = transform(trans, make_tuple(1.f, 1));
 
+  interval<float> f = make_interval(1.f, 1.f);
+
+  auto test = f / 2.f;
+
+  cout << test << endl;
+
   return 0;
 }
