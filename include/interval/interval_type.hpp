@@ -8,7 +8,7 @@
 /**
  * @brief      Basic polymorphic type for intervals
  *
- * @tparam     T     { description }
+ * @tparam     T     Type of the bounds
  */
 template<typename T>
 struct interval
@@ -41,7 +41,7 @@ inline std::tuple<T, T> as_val_tuple(const interval<T>& i)
 }
 
 template<typename T>
-inline std::tuple<const T&, const T&> as_ref_tuple(const interval<T>& i)
+inline std::tuple<const T&, const T&> as_const_ref_tuple(const interval<T>& i)
 {
   return const_tie(i.l, i.r);
 }
@@ -59,7 +59,7 @@ inline std::tuple<const T&, const T&> as_ref_tuple(const interval<T>& i)
 template<typename T>
 std::ostream& operator << (std::ostream& os, const interval<T>& i)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   os << '(' << l << ", " << r << ')';
   return os;
 }

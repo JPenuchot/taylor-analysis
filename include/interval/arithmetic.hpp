@@ -10,7 +10,7 @@ template<typename T>
 inline interval<T> invert(const interval<T>& i)
 {
   using namespace std;
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   T ll , rr;
 
   constexpr auto inf = numeric_limits<T>::infinity();
@@ -40,16 +40,16 @@ inline interval<T> invert(const interval<T>& i)
 template<typename T>
 inline interval<T> operator + (const interval<T>& a, const interval<T>& b)
 {
-  const auto& [la, ra] = as_ref_tuple(a);
-  const auto& [lb, rb] = as_ref_tuple(b);
+  const auto& [la, ra] = as_const_ref_tuple(a);
+  const auto& [lb, rb] = as_const_ref_tuple(b);
   return make_interval(la + lb, ra + rb);
 }
 
 template<typename T>
 inline interval<T> operator - (const interval<T>& a, const interval<T>& b)
 {
-  const auto& [la, ra] = as_ref_tuple(a);
-  const auto& [lb, rb] = as_ref_tuple(b);
+  const auto& [la, ra] = as_const_ref_tuple(a);
+  const auto& [lb, rb] = as_const_ref_tuple(b);
   return make_interval(la - rb, ra - lb);
 }
 
@@ -57,8 +57,8 @@ template<typename T>
 inline interval<T> operator * (const interval<T>& a, const interval<T>& b)
 {
   using namespace std;
-  const auto& [la, ra] = as_ref_tuple(a);
-  const auto& [lb, rb] = as_ref_tuple(b);
+  const auto& [la, ra] = as_const_ref_tuple(a);
+  const auto& [lb, rb] = as_const_ref_tuple(b);
 
   auto v0 = la * lb , v1 = la * rb
      , v2 = ra * lb , v3 = ra * rb;
@@ -81,28 +81,28 @@ inline interval<T> operator / (const interval<T>& a, const interval<T>& b)
 template<typename T>
 inline interval<T> operator + (const interval<T>& i, const T& n)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l + n, r + n);
 }
 
 template<typename T>
 inline interval<T> operator - (const interval<T>& i, const T& n)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l - n, r - n);
 }
 
 template<typename T>
 inline interval<T> operator * (const interval<T>& i, const T& n)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l * n, r * n);
 }
 
 template<typename T>
 inline interval<T> operator / (const interval<T>& i, const T& n)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return i * (T(1) / n);
 }
 
@@ -114,21 +114,21 @@ inline interval<T> operator / (const interval<T>& i, const T& n)
 template<typename T>
 inline interval<T> operator + (const T& n, const interval<T>& i)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l + n, r + n);
 }
 
 template<typename T>
 inline interval<T> operator - (const T& n, const interval<T>& i)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l - n, r - n);
 }
 
 template<typename T>
 inline interval<T> operator * (const T& n, const interval<T>& i)
 {
-  const auto& [l, r] = as_ref_tuple(i);
+  const auto& [l, r] = as_const_ref_tuple(i);
   return make_interval(l * n, r * n);
 }
 
@@ -138,3 +138,6 @@ inline interval<T> operator / (const T& n, const interval<T>& i)
   return make_interval(n, n) / i;
 }
 
+/*
+ *  3. TERNOPS... WAIT WHAT..?
+ */
