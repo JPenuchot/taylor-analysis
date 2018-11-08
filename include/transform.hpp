@@ -24,7 +24,10 @@ std::tuple<Ts...> transform_state
   , const std::tuple<Ts...>& tp
   )
 {
-  static_assert(sizeof...(Fs) == sizeof...(Ts), "Nooooo");
+  static_assert ( sizeof...(Fs) == sizeof...(Ts)
+                , "Number of transformations and arguments don't match."
+                );
+
   using namespace std;
 
   tuple<Ts...> res;
