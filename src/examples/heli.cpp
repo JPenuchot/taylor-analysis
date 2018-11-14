@@ -16,21 +16,21 @@ void heli()
 
   //  Initial state
   auto state = make_tuple
-    ( make_interval(0. , 0.1) /* x1  */ , make_interval(0. , 0.1) /* x2  */
-    , make_interval(0. , 0.1) /* x3  */ , make_interval(0. , 0.1) /* x4  */
-    , make_interval(0. , 0.1) /* x5  */ , make_interval(0. , 0.1) /* x6  */
-    , make_interval(0. , 0.1) /* x7  */ , make_interval(0. , 0.1) /* x8  */
-    , make_interval(0. , 0. ) /* x9  */ , make_interval(0. , 0. ) /* x10 */
-    , make_interval(0. , 0. ) /* x11 */ , make_interval(0. , 0. ) /* x12 */
-    , make_interval(0. , 0. ) /* x13 */ , make_interval(0. , 0. ) /* x14 */
-    , make_interval(0. , 0. ) /* x15 */ , make_interval(0. , 0. ) /* x16 */
-    , make_interval(0. , 0. ) /* x17 */ , make_interval(0. , 0. ) /* x18 */
-    , make_interval(0. , 0. ) /* x19 */ , make_interval(0. , 0. ) /* x20 */
-    , make_interval(0. , 0. ) /* x21 */ , make_interval(0. , 0. ) /* x22 */
-    , make_interval(0. , 0. ) /* x23 */ , make_interval(0. , 0. ) /* x24 */
-    , make_interval(0. , 0. ) /* x25 */ , make_interval(0. , 0. ) /* x26 */
-    , make_interval(0. , 0. ) /* x27 */ , make_interval(0. , 0. ) /* x28 */
-    , make_interval(0. , 0. ) /* t   */
+    ( interval{0. , 0.1} /* x1  */ , interval{0. , 0.1} /* x2  */
+    , interval{0. , 0.1} /* x3  */ , interval{0. , 0.1} /* x4  */
+    , interval{0. , 0.1} /* x5  */ , interval{0. , 0.1} /* x6  */
+    , interval{0. , 0.1} /* x7  */ , interval{0. , 0.1} /* x8  */
+    , interval{0. , 0. } /* x9  */ , interval{0. , 0. } /* x10 */
+    , interval{0. , 0. } /* x11 */ , interval{0. , 0. } /* x12 */
+    , interval{0. , 0. } /* x13 */ , interval{0. , 0. } /* x14 */
+    , interval{0. , 0. } /* x15 */ , interval{0. , 0. } /* x16 */
+    , interval{0. , 0. } /* x17 */ , interval{0. , 0. } /* x18 */
+    , interval{0. , 0. } /* x19 */ , interval{0. , 0. } /* x20 */
+    , interval{0. , 0. } /* x21 */ , interval{0. , 0. } /* x22 */
+    , interval{0. , 0. } /* x23 */ , interval{0. , 0. } /* x24 */
+    , interval{0. , 0. } /* x25 */ , interval{0. , 0. } /* x26 */
+    , interval{0. , 0. } /* x27 */ , interval{0. , 0. } /* x28 */
+    , interval{0. , 0. } /* t   */
     );
 
   auto trans = [&](const auto& vars)
