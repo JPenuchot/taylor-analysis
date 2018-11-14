@@ -17,33 +17,12 @@ struct interval
 };
 
 template<typename T>
-inline interval<T> make_interval(const T& a, const T& b)
-{
-  return interval<T>{a, b};
-}
+interval(const T&, const T&) -> interval<T>;
 
 template<typename T>
 inline interval<T> make_interval(const std::tuple<T, T> tp)
 {
   return interval<T>{ std::get<0>(tp), std::get<1>(tp) };
-}
-
-template<typename T>
-inline std::tuple<T&, T&> as_ref_tuple(interval<T>& i)
-{
-  return std::tie(i.l, i.r);
-}
-
-template<typename T>
-inline std::tuple<T, T> as_val_tuple(const interval<T>& i)
-{
-  return std::tuple(i.l, i.r);
-}
-
-template<typename T>
-inline std::tuple<const T&, const T&> as_const_ref_tuple(const interval<T>& i)
-{
-  return const_tie(i.l, i.r);
 }
 
 /**
@@ -59,7 +38,7 @@ inline std::tuple<const T&, const T&> as_const_ref_tuple(const interval<T>& i)
 template<typename T>
 std::ostream& operator << (std::ostream& os, const interval<T>& i)
 {
-  const auto& [l, r] = as_const_ref_tuple(i);
+  const auto& [l, r] = i;
   os << '(' << l << ", " << r << ')';
   return os;
 }
