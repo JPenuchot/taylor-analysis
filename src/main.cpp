@@ -1,10 +1,10 @@
 #include <iostream>
 
-//#include <differentiation.hpp>
-#include <interval.hpp>
+#include <differentiation.hpp>
+//#include <interval.hpp>
 
 //#include "examples/heli.hpp"
-#include "examples/brusselator.hpp"
+//#include "examples/brusselator.hpp"
 
 using namespace std;
 
@@ -21,16 +21,14 @@ int main()
 
   //brusselator();
 
-  //  Using make_interval allows simple declaration using type inference
-auto a = make_interval(20., 21.);
+  //auto a = interval{20., 21.};
+  //const auto& [l, r] = a;
+  //auto b = (2. + interval{l + 1, r + 2}) * 2.;
+  //cout << b << '\n';
 
-//  as_const_ref_tuple returns a const ref tuple to the interval's bounds,
-//  allowing us to do structured binding on intervals easily.
-const auto& [l, r] = as_const_ref_tuple(a);
+  using namespace diff;
 
-//  Simple algebra
-a = 2. + make_interval(l + 1, l + 2);
-
-//  Operator << has been overloaded too, making intervals easy to print
-cout << a << '\n';
+  //  x n'a aucune valeur, mais son *type* nous intéresse
+  auto x = var{};
+  auto test = (x + x) * x / x;
 }
